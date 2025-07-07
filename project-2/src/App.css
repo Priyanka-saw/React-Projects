@@ -1,0 +1,16 @@
+@import "tailwindcss";
+*{
+    margin: 0;
+    padding: 0;
+}
+.container{
+    max-width: 1280;
+    margin: 0 auto;
+}
+nav{
+    padding: 0 8px;
+    height: 72px;
+}
+nav ul{
+    font-weight: 500;
+}
