@@ -24,7 +24,7 @@ const ContactForm = () => {
             <textarea name="text" rows={5} />
           </div>
 
-          <div className="flex justify-end">
+          <div className="flex justify-center">
             <Button text="Submit Button" />
           </div>
         </form>
