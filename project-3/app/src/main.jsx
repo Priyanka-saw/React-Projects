@@ -5,17 +5,17 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
-  *{
+* {
   margin: 0;
   padding: 0;
-  box-sizing: border-size;
-}
+  box-sizing: border-box;
 
+body {
 background-color: #323343;
 color: white;
 mini-height: 100vh;
-
-`
+}
+`;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
