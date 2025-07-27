@@ -6,64 +6,97 @@ export const BASE_URL = "http://localhost:9000";
 
 const App = () => {
   const [data, setData] = useState(null);
+  const [filterData, setFilterData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [selectedBtn, setSelectedBtn] = useState("all");
 
-useEffect(() => {
+  useEffect(() => {
+    const fetchFoodData = async () => {
+      setLoading(true);
 
-  const fetchFoodData = async () => {
-    setLoading(true);
+      try {
+        const response = await fetch(BASE_URL);
 
-    try {
-      const response = await fetch(BASE_URL);
-
-      const json = await response.json();
-      setData(json);
-      setLoading(false);
-
-    } 
-    catch (error) {
-      setError("Unable to fetch data");
-    }
-  };
-    fetchFoodData();  
+        const json = await response.json();
+        setData(json);
+        setFilterData(json);
+        setLoading(false);
+      } catch (error) {
+        setError("Unable to fetch data");
+      }
+    };
+    fetchFoodData();
   }, []);
 
+  const searchFood = (e) => {
+    const searchValue = e.target.value;
+
+    console.log(searchValue);
+
+    if (searchValue === "") {
+      setFilterData(null);
+    }
+
+    const filter = data?.filter((food) =>
+      food.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setFilterData(filter);
+  };
+
+  const filteredFood = (type) => {
+    if (type === "all") {
+      setFilterData(data);
+      setSelectedBtn("all");
+      return;
+    }
+
+    const filter = data?.filter((food) =>
+      food.type.toLowerCase().includes(type.toLowerCase())
+    );
+
+    setFilterData(filter);
+    setSelectedBtn(type);
+  };
 
   // Show loading or error message
   if (error) return <div>{error}</div>;
   if (loading) return <div>Loading...</div>;
 
   return (
-    <Container>
-      <TopContainer>
-        <div className="logo">
-          <img src="/public/foody logo.png" alt="Logo" />
-        </div>
+    <>
+      <Container>
+        <TopContainer>
+          <div className="logo">
+            <img src="/public/foody logo.png" alt="Logo" />
+          </div>
 
-        <div className="search">
-          <input type="text" placeholder="Search food" />
-        </div>
-      </TopContainer>
+          <div className="search">
+            <input
+              onChange={searchFood}
+              type="text"
+              placeholder="Search food"
+            />
+          </div>
+        </TopContainer>
 
-      <FilterContainer>
-        <Button>All</Button>
-        <Button>Breakfast</Button>
-        <Button>Lunch</Button>
-        <Button>Dinner</Button>
-      </FilterContainer>
-
-      <SearchResult data = {data}/>
-
-    </Container>
+        <FilterContainer>
+          <Button onClick={() => filteredFood("all")}>All</Button>
+          <Button onClick={() => filteredFood("Breakfast")}>Breakfast</Button>
+          <Button onClick={() => filteredFood("Lunch")}>Lunch</Button>
+          <Button onClick={() => filteredFood("Dinner")}>Dinner</Button>
+        </FilterContainer>
+      </Container>
+      <SearchResult data={filterData} />
+    </>
   );
 };
 
 export default App;
 
 // Styled Components
-const Container = styled.div`
+export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
 `;
@@ -101,4 +134,5 @@ export const Button = styled.button`
   padding: 6px 12px;
   border: none;
   color: white;
+  cursor: pointer;
 `;

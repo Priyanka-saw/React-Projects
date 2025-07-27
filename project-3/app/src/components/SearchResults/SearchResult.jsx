@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import { BASE_URL, Button } from "../../App";
+import { BASE_URL, Button, Container } from "../../App";
 const SearchResult = ({ data }) => {
   return (
    <FoodCardContainer>
-  <FoodCards>
+    <Container>
+         <FoodCards>
+    
     {data?.map(({name, text, image, price}) => (
       <FoodCard key={name}>
 
@@ -23,6 +25,7 @@ const SearchResult = ({ data }) => {
       </FoodCard>
     ))}
   </FoodCards>
+    </Container>
 </FoodCardContainer>
   );
 };
@@ -34,7 +37,15 @@ const FoodCardContainer = styled.section`
   background-size: cover;
 `;
 
-const FoodCards = styled.div``;
+const FoodCards = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 32px;
+    column-gap: 20px;
+    align-item: center;
+    justify-content: center;
+    padding-top: 30px;
+`;
 const FoodCard = styled.div`
 
   width: 340px;
