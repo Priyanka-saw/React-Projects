@@ -10,7 +10,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const [selectedBtn, setSelectedBtn] = useState("all");
+  const [setSelectedBtn] = useState("all");
 
   useEffect(() => {
     const fetchFoodData = async () => {
