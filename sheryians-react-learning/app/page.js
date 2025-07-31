@@ -1,8 +1,13 @@
+"use client"
 import React from 'react'
-
+import Header from '@/Component/Header';
 const page = () => {
   return (
-    <div>page</div>
+    <>
+    <h1>Welcome to my react website!</h1>
+    
+   
+    </>
   )
 }
 
