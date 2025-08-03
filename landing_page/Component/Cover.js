@@ -6,7 +6,6 @@ const Cover = () => {
                 {/* Navigation */}
                 <nav className="flex items-center justify-between px-6 py-4 shadow">
                     <h2 className="text-2xl font-bold">MyBrand</h2>
-
                 </nav>
 
                 {/* Hero Section */}
