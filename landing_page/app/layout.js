@@ -1,11 +1,11 @@
 import "./globals.css";
-import Header from "@/Component/Header";
+import Cover from "@/Component/Cover";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-      <Header/>
+      <Cover/>
         {children}
       </body>
     </html>

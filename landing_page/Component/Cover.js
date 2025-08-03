@@ -1,5 +1,5 @@
 "use client"
-const Header = () => {
+const Cover = () => {
     return (
         <div>
             <div className="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-white">
@@ -111,4 +111,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Cover;
